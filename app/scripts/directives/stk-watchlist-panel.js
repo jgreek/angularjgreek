@@ -10,6 +10,8 @@ angular.module('stockDogApp')
       link: function ($scope) {
         // [2] Initialize variables
         $scope.watchlist = {};
+        
+
         var addListModal = $modal({
           scope: $scope,
           template: 'views/templates/addlist-modal.html',
@@ -35,6 +37,12 @@ angular.module('stockDogApp')
         $scope.deleteList = function (list) {
           WatchlistService.remove(list);
           $location.path('/');
+        };
+
+        $scope.currentList = $routeParams.listId;
+        $scope.gotoList = function(listId){ 
+          console.log('going to list...');
+          $location.path('watchlist/' + listId);
         };
       }
     };
