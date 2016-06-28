@@ -1,7 +1,7 @@
 'use strict';
 
-var app = angular.module('stockDogApp');
-app.service('WatchlistService', function WatchlistService() {
+angular.module('stockDogApp')
+  .service('WatchlistService', function WatchlistService() {
     // [1] Helper: Load watchlists from localStorage
     var loadModel = function () {
       var model = {
@@ -52,4 +52,4 @@ app.service('WatchlistService', function WatchlistService() {
 
     // [7] Initialize Model for this singleton service
     var Model = loadModel();
- });
+  });

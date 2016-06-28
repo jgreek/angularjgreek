@@ -1,9 +1,8 @@
 'use strict';
 
-var app = angular.module('stockDogApp', []);
+angular.module('stockDogApp')
   // [1] Register directive and inject dependencies
-app.directive('stkWatchlistPanel', function ($location,  WatchlistService) {
-  	console.log('loaded  ii');
+  .directive('stkWatchlistPanel', function ($location, $modal, WatchlistService) {
     return {
       templateUrl: 'views/templates/watchlist-panel.html',
       restrict: 'E',
@@ -11,7 +10,11 @@ app.directive('stkWatchlistPanel', function ($location,  WatchlistService) {
       link: function ($scope) {
         // [2] Initialize variables
         $scope.watchlist = {};
-       
+        var addListModal = $modal({
+          scope: $scope,
+          template: 'views/templates/addlist-modal.html',
+          show: false
+        });
 
         // [3] Bind model from service to this scope
         $scope.watchlists = WatchlistService.query();
